@@ -22,16 +22,17 @@ public class Incidencia {
 
     //Crear nueva incidencia
     public Incidencia(String descripcion, Boolean exterior, Boolean esNotificacion,
-                      Date horaFecha, Localizacion localizacion){
+                      Date horaFecha, Localizacion localizacion, Espacio espacio){
         this.descripcion=descripcion;
         this.exterior=exterior;
         this.esNotificacion=esNotificacion;
         this.horaFechaCreada =horaFecha;
         this.localizacion=localizacion;
         this.estado=new Estado("Pendiente");
-        Random rand = new Random();
+        Random rand = new Random();                 //Sujeto a cambio.
         this.codigoCancelacion = rand.nextInt();
-        //this.espacio = localizarEspacio(localizacion);
+        //Se obtiene el espacio en la capa de aplicación mediante el repositorio de espacios.
+        this.espacio = espacio;
     }
     public void aceptar() {
         //Estado a aceptado.
