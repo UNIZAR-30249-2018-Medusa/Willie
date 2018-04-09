@@ -5,6 +5,7 @@ var map = L.map('map',{
 var lat = 41.683229;
 var lng = -0.887100;
 map.setView([lat, lng], 17);
+//Carga todos los layers de OSM y de geoserver
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: 'Map data &copy; OpenStreetMap contributors'
@@ -51,6 +52,7 @@ var wmsLayer4= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     maxZoom: 20,
     transparent: true
 });
+//Control de las plantas que se muestran
 var pisos = {
     "Sotanos":wmsLayerSot,
     "Planta baja":wmsLayer0,
@@ -58,6 +60,14 @@ var pisos = {
     "Segundo piso":wmsLayer2,
     "Tercer piso":wmsLayer3,
     "Cuarto piso (Ada)":wmsLayer4
-}
+};
 L.control.layers(pisos).addTo(map);
+//Barra lateral
 var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+//Funcion que maneja los clicks en el mapa
+function onMapClick(e) {
+    map.flyTo(e.latlng);
+
+}
+map.on('click',onMapClick);
