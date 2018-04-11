@@ -1,4 +1,4 @@
-var map = L.map('map',{
+var map = L.map('map',{ //CRS por defecto EPSG3857
     maxZoom: 20,
     minZoom: 18
 });
@@ -13,14 +13,12 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var wmsLayer0= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     layers: 'WilleWMS:planta_0',
     format: 'image/png',
-    crs:L.CRS.EPSG3857,
     maxZoom: 20,
     transparent: true
 }).addTo(map);
 var wmsLayer1= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     layers: 'WilleWMS:planta_1',
     format: 'image/png',
-    crs:L.CRS.EPSG3857,
     maxZoom: 20,
     transparent: true
 });
@@ -34,21 +32,18 @@ var wmsLayer2= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
 var wmsLayer3= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     layers: 'WilleWMS:planta_3',
     format: 'image/png',
-    crs:L.CRS.EPSG3857,
     maxZoom: 20,
     transparent: true
 });
 var wmsLayerSot= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     layers: 'WilleWMS:planta_sotano',
     format: 'image/png',
-    crs:L.CRS.EPSG3857,
     maxZoom: 20,
     transparent: true
 });
 var wmsLayer4= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     layers: 'WilleWMS:ada_planta_4',
     format: 'image/png',
-    crs:L.CRS.EPSG3857,
     maxZoom: 20,
     transparent: true
 });

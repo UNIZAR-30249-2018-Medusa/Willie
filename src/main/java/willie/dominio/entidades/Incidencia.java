@@ -31,7 +31,7 @@ public class Incidencia {
         this.estado=new Estado("Pendiente");
         Random rand = new Random();                 //Sujeto a cambio.
         this.codigoCancelacion = rand.nextInt();
-        //Se obtiene el espacio en la capa de aplicación mediante el repositorio de espacios.
+
         this.espacio = espacio;
     }
     public void aceptar() {
