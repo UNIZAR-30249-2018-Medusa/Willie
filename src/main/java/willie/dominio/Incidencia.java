@@ -1,12 +1,9 @@
-package willie.dominio.entidades;
-
-import willie.dominio.ObjetosValor.Estado;
-import willie.dominio.ObjetosValor.Localizacion;
+package willie.dominio;
 
 import java.util.Date;
 import java.util.Random;
 
-public class Incidencia {
+public class Incidencia extends Entidad {
 
     private String descripcion;
     private Boolean exterior;
@@ -30,7 +27,7 @@ public class Incidencia {
         this.localizacion=localizacion;
         this.estado=new Estado("Pendiente");
         Random rand = new Random();                 //Sujeto a cambio.
-        this.codigoCancelacion = rand.nextInt();
+        this.codigoCancelacion = this.id.getLeastSignificantBits();
 
         this.espacio = espacio;
     }

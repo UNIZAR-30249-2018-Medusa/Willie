@@ -34,3 +34,4 @@ Cargar este dump cambiará la contraseña del rol posrtgres a **postgres**, para
 
 Dispoible en [drive](https://drive.google.com/open?id=1aIKxPP4JdvjCAQVKtufwkcGRw8TKGDoK)  
 El usuario es `postgis` y la contraseña `geoserver`
+El servidor corre en el puerto 8088.

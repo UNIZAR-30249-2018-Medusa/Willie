@@ -1,4 +1,4 @@
-package willie.dominio.ObjetosValor;
+package willie.dominio;
 
 
 import java.util.Objects;
