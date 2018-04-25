@@ -1,4 +1,4 @@
-package willie.dominio.entidades;
+package willie.dominio;
 
 public class Trabajador {
     private String nombre;

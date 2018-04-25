@@ -1,11 +1,11 @@
 package dominio;
 
 import org.junit.Test;
-import willie.dominio.ObjetosValor.Estado;
-import willie.dominio.ObjetosValor.Localizacion;
-import willie.dominio.entidades.Espacio;
-import willie.dominio.entidades.Incidencia;
-import willie.dominio.entidades.Trabajador;
+import willie.dominio.Estado;
+import willie.dominio.Localizacion;
+import willie.dominio.Espacio;
+import willie.dominio.Incidencia;
+import willie.dominio.Trabajador;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaPendienteAceptada(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
         assertEquals(new Estado("Aceptada"),in.getEstado());
@@ -26,7 +26,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaPendienteCancelada(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.cancelar();
         assertEquals(new Estado("Cancelada"),in.getEstado());
@@ -35,7 +35,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaAceptadaAsignada(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
         in.asignar(new Trabajador());
@@ -45,7 +45,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaAsignadaDesasignada(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
         Trabajador pepe = new Trabajador();
@@ -58,7 +58,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaAsignadaCompletada(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
         in.asignar(new Trabajador());
@@ -69,7 +69,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaPendienteCanceladaUsr(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         long codigo = in.getCodigoCancelacion();
         in.cancelarUsuario(codigo);
@@ -79,7 +79,7 @@ public class TestIncidencias {
     @Test
     public void estadosDeIncidenciaAceptadaCanceladaUsr(){
         Incidencia in = new Incidencia("Test",false,false,
-                new Date(),new Localizacion(),new Espacio());
+                new Date(),new Localizacion(new Float(40.5),new Float(0.1)),new Espacio());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         long codigo = in.getCodigoCancelacion();
         in.aceptar();
