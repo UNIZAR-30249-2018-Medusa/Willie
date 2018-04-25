@@ -45,6 +45,11 @@ cmake-build-release/
 
 ## Plugin-specific files:
 
+# Eclipse
+.project
+.classpath
+.settings
+
 # IntelliJ
 out/
 
@@ -62,3 +67,4 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+/bin/
