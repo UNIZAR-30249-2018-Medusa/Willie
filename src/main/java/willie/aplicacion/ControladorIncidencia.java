@@ -10,10 +10,12 @@ public class ControladorIncidencia {
 
     //TODO: Repositorio de incidencias
     @PostMapping("/incidencia")
-    String CrearIncidencia(RequestIncidencia incidenciaEntrante){
+    public String CrearIncidencia(RequestIncidencia incidenciaEntrante){
 
-        Incidencia nuevaIncidencia = IncidenciaFactory.crearIncidencia(incidenciaEntrante.latitud,
-                incidenciaEntrante.longitud,incidenciaEntrante.descripcion,incidenciaEntrante.notificacion);
+        IncidenciaFactory incidenciaFactory = new IncidenciaFactory();
+        Incidencia nuevaIncidencia = incidenciaFactory.crearIncidencia(incidenciaEntrante.getLatitud(),
+                incidenciaEntrante.getLongitud(),incidenciaEntrante.getDescripcion(),incidenciaEntrante.isNotificacion(),
+                incidenciaEntrante.getPlanta());
         return new String("Success");
     }
 }

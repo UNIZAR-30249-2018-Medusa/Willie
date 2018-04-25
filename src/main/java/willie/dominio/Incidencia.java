@@ -9,8 +9,7 @@ public class Incidencia extends Entidad {
     private Boolean exterior;
     private Boolean esNotificacion;
     private Date horaFechaCreada;
-    private Date HoraFechaCompletada;
-    private Espacio espacio;  //Falta navegabilidad.
+    private String idespacio;  //Falta navegabilidad.
     private Localizacion localizacion;
     private Trabajador trabajador;
     private long codigoCancelacion;
@@ -19,7 +18,7 @@ public class Incidencia extends Entidad {
 
     //Crear nueva incidencia
     public Incidencia(String descripcion, Boolean exterior, Boolean esNotificacion,
-                      Date horaFecha, Localizacion localizacion, Espacio espacio){
+                      Date horaFecha, Localizacion localizacion, String idespacio){
         this.descripcion=descripcion;
         this.exterior=exterior;
         this.esNotificacion=esNotificacion;
@@ -29,7 +28,7 @@ public class Incidencia extends Entidad {
         Random rand = new Random();                 //Sujeto a cambio.
         this.codigoCancelacion = this.id.getLeastSignificantBits();
 
-        this.espacio = espacio;
+        this.idespacio = idespacio;
     }
     public void aceptar() {
         //Estado a aceptado.
@@ -59,7 +58,7 @@ public class Incidencia extends Entidad {
     public void completar(){
         assert(this.estado.equals(new Estado("Asignada")));
         this.estado = new Estado("Completada");
-        this.HoraFechaCompletada = new Date();
+        this.estado.finalizar(new Date());
     }
 
     //Devuelve true si el código es correcto, fasle en caso contrario.
