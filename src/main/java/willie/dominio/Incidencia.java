@@ -1,19 +1,15 @@
-package willie.dominio.entidades;
-
-import willie.dominio.ObjetosValor.Estado;
-import willie.dominio.ObjetosValor.Localizacion;
+package willie.dominio;
 
 import java.util.Date;
 import java.util.Random;
 
-public class Incidencia {
+public class Incidencia extends Entidad {
 
     private String descripcion;
     private Boolean exterior;
     private Boolean esNotificacion;
     private Date horaFechaCreada;
-    private Date HoraFechaCompletada;
-    private Espacio espacio;  //Falta navegabilidad.
+    private String idespacio;  //Falta navegabilidad.
     private Localizacion localizacion;
     private Trabajador trabajador;
     private long codigoCancelacion;
@@ -22,7 +18,7 @@ public class Incidencia {
 
     //Crear nueva incidencia
     public Incidencia(String descripcion, Boolean exterior, Boolean esNotificacion,
-                      Date horaFecha, Localizacion localizacion, Espacio espacio){
+                      Date horaFecha, Localizacion localizacion, String idespacio){
         this.descripcion=descripcion;
         this.exterior=exterior;
         this.esNotificacion=esNotificacion;
@@ -30,9 +26,9 @@ public class Incidencia {
         this.localizacion=localizacion;
         this.estado=new Estado("Pendiente");
         Random rand = new Random();                 //Sujeto a cambio.
-        this.codigoCancelacion = rand.nextInt();
+        this.codigoCancelacion = this.id.getLeastSignificantBits();
 
-        this.espacio = espacio;
+        this.idespacio = idespacio;
     }
     public void aceptar() {
         //Estado a aceptado.
@@ -62,7 +58,7 @@ public class Incidencia {
     public void completar(){
         assert(this.estado.equals(new Estado("Asignada")));
         this.estado = new Estado("Completada");
-        this.HoraFechaCompletada = new Date();
+        this.estado.finalizar(new Date());
     }
 
     //Devuelve true si el código es correcto, fasle en caso contrario.

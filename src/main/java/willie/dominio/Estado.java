@@ -1,6 +1,7 @@
-package willie.dominio.ObjetosValor;
+package willie.dominio;
 
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Estado {
@@ -14,6 +15,7 @@ public class Estado {
             CanceladaUsr
          */
     private String nombre;
+    private Date horaFechaCompletada;
 
     public Estado(String nombre){
         assert(nombre.equals("Pendiente") ||
@@ -25,6 +27,9 @@ public class Estado {
         this.nombre=nombre;
     }
 
+    public void finalizar(Date horaFechaCompletada){
+        this.horaFechaCompletada=horaFechaCompletada;
+    }
     @Override
     public String toString() {
         return nombre;
