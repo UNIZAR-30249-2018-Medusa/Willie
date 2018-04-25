@@ -18,4 +18,8 @@ public class Localizacion {
     public float getLongitud() {
         return longitud;
     }
+
+    public int getPlanta() {
+        return planta;
+    }
 }

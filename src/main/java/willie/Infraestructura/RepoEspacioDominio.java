@@ -18,7 +18,7 @@ public class RepoEspacioDominio implements RepositorioEspacios {
 
         Optional<Espacio> resultado;
         EspacioPostGis resultadoQuery = repoEspacioPostGis.findByCoordinates(String.valueOf(localizacion.getLatitud()),
-                String.valueOf(localizacion.getLongitud()));
+                String.valueOf(localizacion.getLongitud()), localizacion.getPlanta());
         if(resultadoQuery == null){
             resultado = Optional.empty();
         }else{
