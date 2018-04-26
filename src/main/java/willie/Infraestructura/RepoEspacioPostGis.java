@@ -8,10 +8,13 @@ import org.springframework.data.repository.query.Param;
 @Repository
 public interface RepoEspacioPostGis extends CrudRepository<EspacioPostGis,String> {
 
-    @Query("SELECT * FROM ada_planta_:planta, betan_planta_:planta, torres_planta_:planta " +
-    	   "WHERE ST_Contains(the_geom, ST_Point(:lat, :lon))")
-    EspacioPostGis findByCoordinates(@Param("lat") String lat,
-    								 @Param("lon") String lon,
-    								 @Param("planta") int planta);
+    @Query(value = "SELECT * FROM ada_planta_0 a WHERE ST_Contains(a.the_geom, ST_SetSRID(ST_Point(?1,?2),25830))\n" +
+            "UNION\n" +
+            "SELECT * FROM betan_planta_0 b WHERE ST_Contains(b.the_geom, ST_SetSRID(ST_Point(?1,?2),25830))\n" +
+            "UNION\n" +
+            "SELECT * FROM torres_planta_0 t WHERE ST_Contains(t.the_geom, ST_SetSRID(ST_Point(?1,?2),25830))",
+            nativeQuery = true)
+    EspacioPostGis findByCoordinates( Double lon,
+    								 Double lat);
 
 }

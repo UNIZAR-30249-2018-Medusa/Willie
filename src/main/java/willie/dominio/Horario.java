@@ -1,5 +1,6 @@
 package willie.dominio;
 
+import javax.persistence.Entity;
 import java.time.DayOfWeek;
 import java.util.HashMap;
 
