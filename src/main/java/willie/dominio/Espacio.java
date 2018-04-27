@@ -7,7 +7,8 @@ public class Espacio {
 
     @Id
     private String id;
-    //private Horario horario;
+    @OneToOne
+    private Horario horario;
     private String edificio;
     private String nombre;
     @Embedded
@@ -15,6 +16,7 @@ public class Espacio {
     private int plantaEspacio;
 
 
+    public Espacio(){}
     public Espacio(String edificio, String tipoDeUso, Localizacion localizacion,int planta){
         this.edificio=edificio;
         this.nombre=tipoDeUso;

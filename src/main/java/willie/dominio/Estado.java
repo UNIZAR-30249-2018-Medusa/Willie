@@ -1,9 +1,11 @@
 package willie.dominio;
 
 
+import javax.persistence.Embeddable;
 import java.util.Date;
 import java.util.Objects;
 
+@Embeddable
 public class Estado {
 
     /*Posibles nombre de estados:

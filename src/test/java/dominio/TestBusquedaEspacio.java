@@ -15,9 +15,8 @@ import willie.Application;
 import willie.Infraestructura.EspacioPostGis;
 import willie.Infraestructura.RepoEspacioDominio;
 import willie.Infraestructura.RepoEspacioPostGis;
-import willie.dominio.Espacio;
-import willie.dominio.Localizacion;
-import willie.dominio.RepositorioEspacios;
+import willie.dominio.*;
+
 import static org.junit.Assert.assertEquals;
 import java.util.Optional;
 

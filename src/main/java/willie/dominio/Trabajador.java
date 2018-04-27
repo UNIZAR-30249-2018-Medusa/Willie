@@ -1,12 +1,12 @@
 package willie.dominio;
 
 public class Trabajador {
-    private String nombre;
+    private String nombreTrabajador;
     private String username;
     private String password;
 
     public String getNombre() {
-        return nombre;
+        return nombreTrabajador;
     }
 
     public String getUsername() {
@@ -17,8 +17,9 @@ public class Trabajador {
         return password;
     }
 
+    public Trabajador(){}
     public Trabajador(String nombre, String username, String password) {
-        this.nombre = nombre;
+        this.nombreTrabajador = nombre;
         this.username = username;
         this.password = password;
     }

@@ -1,21 +1,27 @@
 package willie.dominio;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.Random;
 
+@Entity
 public class Incidencia extends Entidad {
 
     private String descripcion;
     private Boolean exterior;
     private Boolean esNotificacion;
     private Date horaFechaCreada;
-    private String idespacio;  //Falta navegabilidad.
+    private String idespacio;
     private Localizacion localizacion;
+    @Embedded
     private Trabajador trabajador;
     private long codigoCancelacion;
 
+    @Embedded
     private Estado estado;
 
+    public Incidencia(){}
     //Crear nueva incidencia
     public Incidencia(String descripcion, Boolean exterior, Boolean esNotificacion,
                       Date horaFecha, Localizacion localizacion, String idespacio){

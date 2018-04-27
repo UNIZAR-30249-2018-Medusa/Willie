@@ -13,7 +13,7 @@ public class EspacioPostGis {
     String id_utc;
     String id_centro;
     Double tipo_de_us;
-    //String id_edificio;
+    String id_edifici;
 
     public EspacioPostGis(){}
     public EspacioPostGis(String layer, String id_utc, String id_centro, Double tipo_de_us, String id_edificio) {
@@ -21,11 +21,11 @@ public class EspacioPostGis {
         this.id_utc = id_utc;
         this.id_centro = id_centro;
         this.tipo_de_us = tipo_de_us;
-        //this.id_edificio = id_edificio;
+        this.id_edifici = id_edifici;
     }
 
     Espacio extraeEspacio(){
-        return new Espacio("Ada",id_centro,null,Character.getNumericValue(id_utc.charAt(1)));
+        return new Espacio(id_edifici,id_centro,null,Character.getNumericValue(id_utc.charAt(1)));
     }
 
 
