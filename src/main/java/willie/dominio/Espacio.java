@@ -2,11 +2,9 @@ package willie.dominio;
 
 import javax.persistence.*;
 
-@Entity
 public class Espacio {
 
-    @Id
-    private String id;
+	private String id;
     @OneToOne
     private Horario horario;
     private String edificio;

@@ -12,7 +12,7 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-public class TestIncidencias {
+public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaPendienteAceptada(){

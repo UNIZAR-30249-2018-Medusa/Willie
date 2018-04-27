@@ -2,10 +2,12 @@ package willie.dominio;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Random;
 
 @Entity
+@Table(name="incidencia")
 public class Incidencia extends Entidad {
 
     private String descripcion;
@@ -13,6 +15,7 @@ public class Incidencia extends Entidad {
     private Boolean esNotificacion;
     private Date horaFechaCreada;
     private String idespacio;
+    @Embedded
     private Localizacion localizacion;
     @Embedded
     private Trabajador trabajador;
