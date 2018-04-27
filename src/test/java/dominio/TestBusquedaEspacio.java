@@ -40,5 +40,6 @@ public class TestBusquedaEspacio {
         Optional<Espacio> espacio = repositorioEspacios.ObtenerEspacioPorLoca(loc);
         assertEquals("PASILLO",espacio.get().getNombre());
         assertEquals(0,espacio.get().getPlantaEspacio());
+        assertEquals("Ada Byron",espacio.get().getEdificio());
     }
 }
