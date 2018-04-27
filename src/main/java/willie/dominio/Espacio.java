@@ -33,4 +33,8 @@ public class Espacio {
     public int getPlantaEspacio() {
         return plantaEspacio;
     }
+
+    public String getEdificio() {
+        return edificio;
+    }
 }
