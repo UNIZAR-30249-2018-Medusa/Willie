@@ -3,10 +3,11 @@ package willie.dominio;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface RepositorioIncidencias extends CrudRepository<Incidencia,UUID> {
+public interface RepositorioIncidencias {
 
     void anyadirIncidencia(String descripcion, String nombre, Localizacion localizacion, Trabajador trabajador);
 
