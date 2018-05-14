@@ -133,15 +133,15 @@ function menucrearincidencias() {
 function getinfoEspacio(e) {
     // transformacion de coordenadas a 25830
     var bngprojection = "+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs ";
-    punto = proj4(bngprojection, [e.latlng.lat, e.latlng.lng]);
-    puntolat=punto[0]
-    puntolong=punto[1]
+    punto = proj4(bngprojection, [ e.latlng.lng,e.latlng.lat]);
+    puntolat=punto[0];
+    puntolong=punto[1];
     var data = {};
-    data.latitud =  punto[0];
-    data.longitud=  punto[1];
+    data.latitud =  punto[1];
+    data.longitud=  punto[0];
     data.planta  = 0;
     var json = JSON.stringify(data);
-    url="/espacio"
+    url="/espacio";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url, false);
     xmlhttp.send(json);
@@ -165,8 +165,7 @@ function onMapClick(e) {
     if(marker!=null) {
         map.removeLayer(marker);
     }
-    getinfoEspacio(e)
-
+    getinfoEspacio(e);
     map.flyTo(e.latlng);
 
 }
