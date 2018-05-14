@@ -18,26 +18,19 @@ public class ControladorEspacio {
     RepositorioEspacios repositorioEspacios;
 
     @RequestMapping(value="/espacio", method = RequestMethod.POST)
-    public @ResponseBody String ObtenerInfoEspacio(@RequestBody String json){
-        JsonParser parser = new JsonParser();
-        JsonElement jsonTree = parser.parse(json);
-        JsonObject jsonObject = jsonTree.getAsJsonObject();
-        System.out.println(json);
-        Double lat= jsonObject.get("latitud").getAsDouble();
-        Double lon = jsonObject.get("longitud").getAsDouble();
+    public @ResponseBody InfoEspacio ObtenerInfoEspacio(@RequestBody CoordenadasMapa coord){
+        System.out.println(coord);
+        Double lat= coord.latitud;
+        Double lon = coord.longitud;
         int planta=0;
         Optional<Espacio> resultado = repositorioEspacios.ObtenerEspacioPorLoca(new Localizacion(lat,lon,planta));
         if(resultado.isPresent()){
             InfoEspacio info= new InfoEspacio(resultado.get().getPlantaEspacio(),resultado.get().getNombre(),
                     resultado.get().getEdificio(),false);
-            Gson gson = new Gson();
-            String representacionJSON = gson.toJson(info);
-            return  representacionJSON;
+            return  info;
         }else {
             InfoEspacio info =new InfoEspacio(0,"Exterior","Exterior",true);
-            Gson gson = new Gson();
-            String representacionJSON = gson.toJson(info);
-            return  representacionJSON;
+            return  info;
         }
 
 

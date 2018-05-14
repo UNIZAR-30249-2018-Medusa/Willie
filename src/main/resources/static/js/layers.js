@@ -144,9 +144,10 @@ function getinfoEspacio(e) {
     url="/espacio";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url, false);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(json);
     infoespacio=JSON.parse(xmlhttp.responseText)
-    punto=e
+    punto=e;
     var contenidoficha='<div id="ficha">'+
         '<b class="w3-center">Ficha</b><br>'+
         '<b>Edificio: '+infoespacio["edificio"] +' </b><br>'+
