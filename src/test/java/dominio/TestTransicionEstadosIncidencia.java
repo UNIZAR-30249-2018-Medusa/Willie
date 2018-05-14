@@ -16,7 +16,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaPendienteAceptada(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
@@ -25,7 +25,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaPendienteCancelada(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.cancelar();
@@ -34,7 +34,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaAceptadaAsignada(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
@@ -44,7 +44,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaAsignadaDesasignada(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
@@ -57,7 +57,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaAsignadaCompletada(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         in.aceptar();
@@ -68,7 +68,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaPendienteCanceladaUsr(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         long codigo = in.getCodigoCancelacion();
@@ -78,7 +78,7 @@ public class TestTransicionEstadosIncidencia {
 
     @Test
     public void estadosDeIncidenciaAceptadaCanceladaUsr(){
-        Incidencia in = new Incidencia("Test",false,false,
+        Incidencia in = new Incidencia("Test","nombre",false,false,
                 new Date(),new Localizacion(new Float(40.5),new Float(0.1),0),new Espacio().getId());
         assertEquals(new Estado("Pendiente"),in.getEstado());
         long codigo = in.getCodigoCancelacion();

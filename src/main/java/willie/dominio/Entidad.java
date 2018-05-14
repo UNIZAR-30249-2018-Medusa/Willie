@@ -15,4 +15,8 @@ public class Entidad {
     @Column(columnDefinition = "uuid", updatable = false)
     protected UUID id;
 
+    public Entidad(){
+        id = UUID.randomUUID();
+    }
+
 }

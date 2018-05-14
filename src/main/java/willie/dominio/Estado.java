@@ -19,6 +19,7 @@ public class Estado {
     private String nombreEstado;
     private Date horaFechaCompletada;
 
+    public Estado(){}
     public Estado(String nombre){
         assert(nombre.equals("Pendiente") ||
                 nombre.equals("Cancelada") ||

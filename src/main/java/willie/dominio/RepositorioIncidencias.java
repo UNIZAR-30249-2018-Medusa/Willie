@@ -17,6 +17,8 @@ public interface RepositorioIncidencias {
 
     Incidencia buscarIncidenciaNombre(String nombre);
 
+    Incidencia buscarIncidenciaId(UUID nombre);
+
     ArrayList<Incidencia> buscarIncidenciasTrabajador(Trabajador trabajador);
 
     Localizacion localizarIncidencia(String nombre);

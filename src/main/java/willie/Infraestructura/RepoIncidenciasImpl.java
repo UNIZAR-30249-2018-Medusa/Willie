@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import willie.dominio.*;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     RepoIncidenciasSpring repoIncidenciasSpring;
 
     @Override
+    @Transactional
     public void anyadirIncidencia(Incidencia incidencia) {
-
         repoIncidenciasSpring.save(incidencia);
 
     }
@@ -36,7 +37,12 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
 
     @Override
     public Incidencia buscarIncidenciaNombre(String nombre) {
-        return null;
+        return repoIncidenciasSpring.findByNombreIncidencia(nombre);
+    }
+
+    @Override
+    public Incidencia buscarIncidenciaId(UUID nombre) {
+        return repoIncidenciasSpring.findById(nombre);
     }
 
     @Override

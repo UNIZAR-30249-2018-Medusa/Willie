@@ -4,7 +4,9 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Table(name="incidencia")
@@ -29,6 +31,7 @@ public class Incidencia extends Entidad {
     //Crear nueva incidencia
     public Incidencia(String descripcion, String nombre, Boolean exterior, Boolean esNotificacion,
                       Date horaFecha, Localizacion localizacion, String idespacio){
+        super();
         this.descripcion=descripcion;
         this.nombreIncidencia = nombre;
         this.exterior=exterior;
@@ -94,5 +97,15 @@ public class Incidencia extends Entidad {
 
     public long getCodigoCancelacion() {
         return codigoCancelacion;
+    }
+
+    public UUID getId(){return id;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Incidencia that = (Incidencia) o;
+        return this.id.equals(that.id);
     }
 }

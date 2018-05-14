@@ -14,8 +14,12 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import willie.Application;
 import willie.dominio.*;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -26,7 +30,13 @@ public class TestCreacionIncidencia {
     
     @Test
     public void creacionIncidencia() {
-    	Incidencia in = new Incidencia();
+    	Incidencia in = new Incidencia("incidencia de prueba","test",false,false,new Date(),
+                new Localizacion(4616791.0,675734.3,0),"pasillo");
+        UUID nueva = in.getId();
         repositorioIncidencias.anyadirIncidencia(in);
+        Incidencia out = repositorioIncidencias.buscarIncidenciaId(nueva);
+        assertThat (in.equals(out));
+        //assertEquals(in,out);
+
     }
 }
