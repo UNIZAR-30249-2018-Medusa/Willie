@@ -13,51 +13,24 @@ import java.util.UUID;
 public class RepoIncidenciasImpl implements RepositorioIncidencias {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    RepoIncidenciasSpring repoIncidenciasSpring;
 
     @Override
-    public void anyadirIncidencia(String descripcion, String nombre,
-                                  Localizacion localizacion, Trabajador trabajador) {
+    public void anyadirIncidencia(Incidencia incidencia) {
 
-        final String SQLstatement = "INSERT INTO public.incidencia (" +
-                "descripcion, nombre, localizacion, trabajador)" +
-                " VALUES (?, ?, ?, ?)";
-
-        jdbcTemplate.update(SQLstatement, descripcion, nombre,
-                localizacion, trabajador);
+        repoIncidenciasSpring.save(incidencia);
 
     }
 
     @Override
-    public void actualizarIncidencia(String descripcion, String nombre,
-                                     Localizacion localizacion, Trabajador trabajador) {
-
-        final String SQLstatement = "UPDATE public.incidencia SET " +
-                "descripcion = ?, localizacion = ?, trabajador = ? " +
-                "WHERE nombre = ?";
-
-        jdbcTemplate.update(SQLstatement, descripcion,
-                localizacion, trabajador, nombre);
-
+    public void actualizarIncidencia(Incidencia incidencia) {
+        repoIncidenciasSpring.save(incidencia);
     }
 
     @Override
-    public void borrarIncidencia(String nombre) {
+    public void borrarIncidencia(Incidencia incidencia) {
 
-        final String SQLstatement = "DELETE FROM public.incidencia " +
-                "WHERE nombre = ?";
-
-        jdbcTemplate.update(SQLstatement, nombre);
-
-    }
-
-    @Override
-    public void cambiarEstadoIncidencia(String nombre, Estado estado) {
-
-        final String SQLstatement = "UPDATE public.incidencia SET " +
-                "estado = ? WHERE nombre = ?";
-
-        jdbcTemplate.update(SQLstatement, estado, nombre);
+        repoIncidenciasSpring.delete(incidencia);
 
     }
 

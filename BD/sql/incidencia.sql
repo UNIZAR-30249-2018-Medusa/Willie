@@ -6,6 +6,7 @@ CREATE TABLE public.incidencia
 (
     id uuid NOT NULL,
     descripcion text COLLATE pg_catalog."default",
+    nombre_incidencia text COLLATE pg_catalog."default",
     exterior boolean,
     "es_notificacion" boolean,
     "hora_fecha_creada" date,
@@ -17,7 +18,7 @@ CREATE TABLE public.incidencia
     username text COLLATE pg_catalog."default",
     password text COLLATE pg_catalog."default",
     "codigo_cancelacion" double precision,
-    nombre text COLLATE pg_catalog."default",
+    "nombre_estado" text COLLATE pg_catalog."default",
     "hora_fecha_completada" date,
     CONSTRAINT incidencia_pkey PRIMARY KEY (id)
 )

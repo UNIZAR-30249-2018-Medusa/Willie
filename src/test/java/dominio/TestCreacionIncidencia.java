@@ -21,20 +21,12 @@ import java.util.Optional;
 @SpringBootTest(classes = Application.class)
 public class TestCreacionIncidencia {
 
-//    @Configuration
-//    static class ContextConfiguration{
-//        @Bean
-//        public RepositorioEspacios repositorioEspacios(){
-//            RepositorioEspacios repositorioEspacios = new RepoEspacioDominio();
-//            return repositorioEspacios;
-//        }
-//    }
     @Autowired
     RepositorioIncidencias repositorioIncidencias;
     
     @Test
     public void creacionIncidencia() {
     	Incidencia in = new Incidencia();
-        repositorioIncidencias.save(in);
+        repositorioIncidencias.anyadirIncidencia(in);
     }
 }

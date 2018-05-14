@@ -9,13 +9,11 @@ import java.util.UUID;
 @Repository
 public interface RepositorioIncidencias {
 
-    void anyadirIncidencia(String descripcion, String nombre, Localizacion localizacion, Trabajador trabajador);
+    void anyadirIncidencia(Incidencia incidencia);
 
-    void actualizarIncidencia(String descripcion, String nombre, Localizacion localizacion, Trabajador trabajador);
+    void actualizarIncidencia(Incidencia incidencia);
 
-    void borrarIncidencia(String nombre);
-
-    void cambiarEstadoIncidencia(String nombre, Estado estado);
+    void borrarIncidencia(Incidencia incidencia);
 
     Incidencia buscarIncidenciaNombre(String nombre);
 

@@ -11,7 +11,7 @@ import java.util.Random;
 public class Incidencia extends Entidad {
 
     private String descripcion;
-    private String nombre;
+    private String nombreIncidencia;
     private Boolean exterior;
     private Boolean esNotificacion;
     private Date horaFechaCreada;
@@ -30,7 +30,7 @@ public class Incidencia extends Entidad {
     public Incidencia(String descripcion, String nombre, Boolean exterior, Boolean esNotificacion,
                       Date horaFecha, Localizacion localizacion, String idespacio){
         this.descripcion=descripcion;
-        this.nombre = nombre;
+        this.nombreIncidencia = nombre;
         this.exterior=exterior;
         this.esNotificacion=esNotificacion;
         this.horaFechaCreada =horaFecha;

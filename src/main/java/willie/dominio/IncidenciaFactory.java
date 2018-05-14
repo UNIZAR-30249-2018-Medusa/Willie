@@ -10,7 +10,7 @@ public class IncidenciaFactory {
     @Autowired
     RepositorioEspacios repositorioEspacios;
 
-    public Incidencia crearIncidencia(float latitud, float longitud, String descripcion, boolean notificacion
+    public Incidencia crearIncidencia(float latitud, float longitud, String nombre,String descripcion, boolean notificacion
             , int planta){
         Localizacion localizacion = new Localizacion(latitud,longitud,planta);
         //TODO: Obtener un espacion dadas unas coordenadas a través de un servicio de dominio
@@ -21,6 +21,6 @@ public class IncidenciaFactory {
             exterior=false;
             idespacio=espacioResultado.get().getId();
         }
-        return new Incidencia(descripcion,false,notificacion,new Date(),localizacion,idespacio);
+        return new Incidencia(descripcion,nombre,false,notificacion,new Date(),localizacion,idespacio);
     }
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class RepoEspacioDominio implements RepositorioEspacios {
 
     @Autowired
-    RepoEspacioPostGis repoEspacioPostGis;
+    RepoEspacioSpring repoEspacioSpring;
 
     private Logger log = LoggerFactory.getLogger(RepoEspacioDominio.class);
 
@@ -24,7 +24,7 @@ public class RepoEspacioDominio implements RepositorioEspacios {
 
         Optional<Espacio> resultado;
         log.info(String.valueOf(localizacion.getLatitud())+" "+String.valueOf(localizacion.getLongitud()));
-        EspacioPostGis resultadoQuery = repoEspacioPostGis.findByCoordinates(localizacion.getLongitud(),
+        EspacioPostGis resultadoQuery = repoEspacioSpring.findByCoordinates(localizacion.getLongitud(),
                 localizacion.getLatitud());
         if(resultadoQuery == null){
             resultado = Optional.empty();
