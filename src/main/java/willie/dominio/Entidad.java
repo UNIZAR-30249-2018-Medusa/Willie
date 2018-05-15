@@ -1,9 +1,6 @@
 package willie.dominio;
 
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
 import java.util.UUID;
 
@@ -11,12 +8,10 @@ import java.util.UUID;
 public class Entidad {
 	
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
-    protected UUID id;
+    protected String id;
 
     public Entidad(){
-        id = UUID.randomUUID();
+        id = UUID.randomUUID().toString();
     }
 
 }

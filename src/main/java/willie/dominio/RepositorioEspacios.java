@@ -1,10 +1,6 @@
 package willie.dominio;
 
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.RepositoryDefinition;
-import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 

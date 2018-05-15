@@ -1,16 +1,11 @@
 package dominio;
 
 import org.junit.Test;
-import willie.dominio.Estado;
-import willie.dominio.Localizacion;
-import willie.dominio.Espacio;
-import willie.dominio.Incidencia;
-import willie.dominio.Trabajador;
+import willie.dominio.*;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class TestTransicionEstadosIncidencia {
 

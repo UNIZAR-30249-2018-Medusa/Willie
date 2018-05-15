@@ -1,10 +1,8 @@
 package willie.dominio;
 
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Repository
 public interface RepositorioIncidencias {
@@ -17,7 +15,7 @@ public interface RepositorioIncidencias {
 
     Incidencia buscarIncidenciaNombre(String nombre);
 
-    Incidencia buscarIncidenciaId(UUID nombre);
+    Incidencia buscarIncidenciaId(String id);
 
     ArrayList<Incidencia> buscarIncidenciasTrabajador(Trabajador trabajador);
 

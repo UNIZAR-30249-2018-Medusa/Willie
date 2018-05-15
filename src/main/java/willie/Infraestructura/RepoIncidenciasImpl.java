@@ -1,14 +1,14 @@
 package willie.Infraestructura;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import willie.dominio.*;
+import willie.dominio.Incidencia;
+import willie.dominio.Localizacion;
+import willie.dominio.RepositorioIncidencias;
+import willie.dominio.Trabajador;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Repository
 public class RepoIncidenciasImpl implements RepositorioIncidencias {
@@ -29,9 +29,10 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
+    @Transactional
     public void borrarIncidencia(Incidencia incidencia) {
 
-        repoIncidenciasSpring.deleteById(incidencia.getId());
+        repoIncidenciasSpring.delete(incidencia);
 
     }
 
@@ -41,8 +42,8 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
-    public Incidencia buscarIncidenciaId(UUID nombre) {
-        return repoIncidenciasSpring.findById(nombre);
+    public Incidencia buscarIncidenciaId(String nombre) {
+        return repoIncidenciasSpring.findById(nombre).get();
     }
 
     @Override

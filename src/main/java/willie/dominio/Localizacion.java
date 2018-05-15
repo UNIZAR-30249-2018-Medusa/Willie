@@ -1,7 +1,6 @@
 package willie.dominio;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
 @Embeddable
 public class Localizacion {

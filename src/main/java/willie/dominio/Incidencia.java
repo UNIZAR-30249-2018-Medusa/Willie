@@ -4,9 +4,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Random;
-import java.util.UUID;
 
 @Entity
 @Table(name="incidencia")
@@ -40,7 +38,7 @@ public class Incidencia extends Entidad {
         this.localizacion=localizacion;
         this.estado=new Estado("Pendiente");
         Random rand = new Random();                 //Sujeto a cambio.
-        this.codigoCancelacion = this.id.getLeastSignificantBits();
+        //this.codigoCancelacion = this.id.getLeastSignificantBits();
 
         this.idespacio = idespacio;
     }
@@ -99,7 +97,7 @@ public class Incidencia extends Entidad {
         return codigoCancelacion;
     }
 
-    public UUID getId(){return id;}
+    public String getId(){return id;}
 
     public String getDescripcion() {
         return descripcion;

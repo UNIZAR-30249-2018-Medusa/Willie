@@ -4,7 +4,7 @@ DROP TABLE public.incidencia;
 
 CREATE TABLE public.incidencia
 (
-    id uuid NOT NULL,
+    id text NOT NULL,
     descripcion text COLLATE pg_catalog."default",
     nombre_incidencia text COLLATE pg_catalog."default",
     exterior boolean,

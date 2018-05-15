@@ -1,7 +1,5 @@
 package willie.Infraestructura;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import willie.dominio.Espacio;
 
 import javax.persistence.Entity;
