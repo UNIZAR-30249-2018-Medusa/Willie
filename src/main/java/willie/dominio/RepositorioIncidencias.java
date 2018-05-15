@@ -21,6 +21,10 @@ public interface RepositorioIncidencias {
 
     ArrayList<Incidencia> buscarIncidenciasTrabajador(Trabajador trabajador);
 
+    ArrayList<Incidencia> IncidenciasPorFecha();
+
     Localizacion localizarIncidencia(String nombre);
+
+
 
 }

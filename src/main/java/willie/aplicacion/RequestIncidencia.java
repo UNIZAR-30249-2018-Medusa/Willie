@@ -3,13 +3,13 @@ package willie.aplicacion;
 public class RequestIncidencia {
     private String descripcion;
     private String nombre;
-    private float latitud;
-    private float longitud;
+    private Double latitud;
+    private Double longitud;
     private boolean notificacion;
     private int planta;
 
     public RequestIncidencia(){}
-    public RequestIncidencia(String descripcion,String nombre, float latitud, float longitud, boolean notificacion, int planta) {
+    public RequestIncidencia(String descripcion,String nombre, Double latitud, Double longitud, boolean notificacion, int planta) {
         this.descripcion = descripcion;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -22,11 +22,11 @@ public class RequestIncidencia {
         return descripcion;
     }
 
-    public float getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
 
-    public float getLongitud() {
+    public Double getLongitud() {
         return longitud;
     }
 

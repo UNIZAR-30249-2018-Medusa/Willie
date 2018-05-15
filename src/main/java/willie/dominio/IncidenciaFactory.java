@@ -10,7 +10,7 @@ public class IncidenciaFactory {
     @Autowired
     RepositorioEspacios repositorioEspacios;
 
-    public Incidencia crearIncidencia(float latitud, float longitud, String nombre,String descripcion, boolean notificacion
+    public Incidencia crearIncidencia(Double latitud, Double longitud, String nombre,String descripcion, boolean notificacion
             , int planta){
         Localizacion localizacion = new Localizacion(latitud,longitud,planta);
         //TODO: Obtener un espacion dadas unas coordenadas a través de un servicio de dominio

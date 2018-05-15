@@ -101,6 +101,22 @@ public class Incidencia extends Entidad {
 
     public UUID getId(){return id;}
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getNombreIncidencia() {
+        return nombreIncidencia;
+    }
+
+    public Date getHoraFechaCreada() {
+        return horaFechaCreada;
+    }
+
+    public Localizacion getLocalizacion() {
+        return localizacion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

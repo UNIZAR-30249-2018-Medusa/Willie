@@ -7,6 +7,8 @@ import willie.dominio.IncidenciaFactory;
 import willie.dominio.RepositorioEspacios;
 import willie.dominio.RepositorioIncidencias;
 
+import java.util.ArrayList;
+
 @RestController
 public class ControladorIncidencia {
 
@@ -22,9 +24,19 @@ public class ControladorIncidencia {
                 incidenciaEntrante.getPlanta());
         return new String("Success");
     }
-//    @RequestMapping(value = "/registro", method = RequestMethod.GET)
-//    public InfoIncidencia[] obtenerRegistroIncidencias(){
-//
-//        repositorioIncidencias
-//    }
+
+    @RequestMapping(value = "/registro", method = RequestMethod.GET)
+    public ArrayList<InfoIncidencia> obtenerRegistroIncidencias(){
+
+        ArrayList<Incidencia> resultado = repositorioIncidencias.IncidenciasPorFecha();
+        ArrayList<InfoIncidencia> registroDevuelto = new ArrayList<>();
+        if(resultado.isEmpty()){
+            return registroDevuelto;
+        }else {
+            for(Incidencia i : resultado){
+                registroDevuelto.add(InfoIncidencia.crearInfoDeIncidencia(i));
+            }
+            return registroDevuelto;
+        }
+    }
 }
