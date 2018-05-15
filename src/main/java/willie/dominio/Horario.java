@@ -11,6 +11,7 @@ public class Horario {
     private String utc_espacio;
     private HashMap<DayOfWeek,IntervalosDeTiempo> ocupacion;
 
+    public Horario(){}
     public void añadirDia(DayOfWeek dia,IntervalosDeTiempo intervalosDeTiempo){
         ocupacion.put(dia, intervalosDeTiempo);
     }

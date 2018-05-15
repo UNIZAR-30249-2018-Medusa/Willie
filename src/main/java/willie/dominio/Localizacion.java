@@ -10,6 +10,7 @@ public class Localizacion {
     private double longitud;
     private int planta;
 
+    public Localizacion(){}
     public Localizacion(double latitud,double longitud,int planta){
         this.latitud=latitud;
         this.longitud=longitud;

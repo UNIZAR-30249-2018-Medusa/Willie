@@ -1,53 +1,59 @@
 package willie.Infraestructura;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import willie.dominio.*;
+import org.springframework.transaction.annotation.Transactional;
+import willie.dominio.Incidencia;
+import willie.dominio.Localizacion;
+import willie.dominio.RepositorioIncidencias;
+import willie.dominio.Trabajador;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Repository
 public class RepoIncidenciasImpl implements RepositorioIncidencias {
+
     @Autowired
-    RepoIncidenciaPostGis repoIncidenciaPostGis;
-    private Logger log = LoggerFactory.getLogger(RepoIncidenciasImpl.class);
+    RepoIncidenciasSpring repoIncidenciasSpring;
 
     @Override
+    @Transactional
     public void anyadirIncidencia(Incidencia incidencia) {
-
-       repoIncidenciaPostGis.save(incidencia.getCodigoCancelacion(),
-               incidencia.getDescripcion(),incidencia.getexterior(),incidencia.getEstado().toString(),
-               incidencia.gethoraFechaCreada(),incidencia.getTrabajador().getNombre(),incidencia.getCodigoCancelacion(),
-               incidencia.getNombreIncidencia());
-
+        repoIncidenciasSpring.save(incidencia);
 
     }
 
     @Override
-    public void actualizarIncidencia(Incidencia i, Trabajador trabajador) {
+    public void actualizarIncidencia(Incidencia incidencia) {
+        repoIncidenciasSpring.save(incidencia);
+    }
+
+    @Override
+    public void borrarIncidencia(Incidencia incidencia) {
+
+        repoIncidenciasSpring.deleteById(incidencia.getId());
 
     }
 
     @Override
-    public void borrarIncidencia(Incidencia i) {
-
+    public Incidencia buscarIncidenciaNombre(String nombre) {
+        return repoIncidenciasSpring.findByNombreIncidencia(nombre);
     }
 
     @Override
-    public void cambiarEstadoIncidencia(Incidencia i, Estado estado) {
-
-    }
-
-    @Override
-    public Incidencia buscarIncidenciaNombre(Incidencia i) {
-        return null;
+    public Incidencia buscarIncidenciaId(UUID nombre) {
+        return repoIncidenciasSpring.findById(nombre);
     }
 
     @Override
     public ArrayList<Incidencia> buscarIncidenciasTrabajador(Trabajador trabajador) {
         return null;
+    }
+
+    @Override
+    public ArrayList<Incidencia> IncidenciasPorFecha() {
+        return repoIncidenciasSpring.findAllByOrderByHoraFechaCreadaDesc();
     }
 
     @Override

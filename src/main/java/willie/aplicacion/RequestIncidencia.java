@@ -9,18 +9,17 @@ public class RequestIncidencia {
     private int planta;
 
     public RequestIncidencia(){}
-    public RequestIncidencia(String descripcion, String nombre, Double latitud, Double longitud, boolean notificacion, int planta) {
+    public RequestIncidencia(String descripcion,String nombre, Double latitud, Double longitud, boolean notificacion, int planta) {
         this.descripcion = descripcion;
-        this.nombre=nombre;
         this.latitud = latitud;
         this.longitud = longitud;
         this.notificacion = notificacion;
         this.planta = planta;
+        this.nombre = nombre;
     }
 
-    public String getDescripcion() {return descripcion;}
-    public String getNombre() {
-        return nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public Double getLatitud() {
@@ -38,4 +37,9 @@ public class RequestIncidencia {
     public int getPlanta() {
         return planta;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
 }

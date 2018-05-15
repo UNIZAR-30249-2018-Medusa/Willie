@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Table(name="incidencia")
@@ -27,10 +28,11 @@ public class Incidencia extends Entidad {
 
     public Incidencia(){}
     //Crear nueva incidencia
-    public Incidencia(String descripcion, String nombreIncidencia, Boolean exterior, Boolean esNotificacion,
+    public Incidencia(String descripcion, String nombre, Boolean exterior, Boolean esNotificacion,
                       Date horaFecha, Localizacion localizacion, String idespacio){
+        super();
         this.descripcion=descripcion;
-        this.nombreIncidencia = nombreIncidencia;
+        this.nombreIncidencia = nombre;
         this.exterior=exterior;
         this.esNotificacion=esNotificacion;
         this.horaFechaCreada =horaFecha;
@@ -41,13 +43,6 @@ public class Incidencia extends Entidad {
 
         this.idespacio = idespacio;
     }
-    public String getDescripcion(){return descripcion;}
-    public String getNombreIncidencia(){return nombreIncidencia;}
-    public Boolean getexterior(){return exterior;}
-    public Date gethoraFechaCreada(){return horaFechaCreada;}
-    public String getIdespacio(){return idespacio;}
-    public Trabajador getTrabajador(){return trabajador;}
-
     public void aceptar() {
         //Estado a aceptado.
         assert(this.estado.equals(new Estado("Pendiente")));
@@ -101,5 +96,34 @@ public class Incidencia extends Entidad {
 
     public long getCodigoCancelacion() {
         return codigoCancelacion;
+    }
+
+    public UUID getId(){return id;}
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getNombreIncidencia() {
+        return nombreIncidencia;
+    }
+
+    public Date getHoraFechaCreada() {
+        return horaFechaCreada;
+    }
+
+    public Localizacion getLocalizacion() {
+        return localizacion;
+    }
+    public String getIdespacio() {
+        return idespacio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Incidencia that = (Incidencia) o;
+        return this.id.equals(that.id);
     }
 }

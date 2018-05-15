@@ -38,7 +38,29 @@ public class EspacioPostGis {
                 this.id_edifici = "Torres Quevedo";
                 break;
         }
-        return new Espacio(id_edifici,id_centro,null,Character.getNumericValue(id_utc.charAt(1)));
+        String sSubCadena = id_utc.substring(0,2);
+        int planta=0;
+        switch (sSubCadena){
+            case "S1":
+                planta=-1;
+                break;
+            case "00":
+                planta=0;
+                break;
+            case "01":
+                planta=1;
+                break;
+            case "02":
+                planta=2;
+                break;
+            case "03":
+                planta=3;
+                break;
+            case "04":
+                planta=4;
+                break;
+        }
+        return new Espacio(id_edifici,id_centro,null,planta);
     }
 
 

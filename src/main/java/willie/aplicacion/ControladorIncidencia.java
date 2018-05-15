@@ -1,39 +1,74 @@
 package willie.aplicacion;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import willie.dominio.Incidencia;
-import willie.dominio.IncidenciaFactory;
-import willie.dominio.RepositorioIncidencias;
+import org.springframework.web.bind.annotation.*;
+import willie.dominio.*;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 public class ControladorIncidencia {
 
     @Autowired
     RepositorioIncidencias repositorioIncidencias;
+    @Autowired
+    RepositorioEspacios repositorioEspacios;
+
     //TODO: Repositorio de incidencias
     @RequestMapping(value="/crearincidencia", method = RequestMethod.POST)
-    public String CrearIncidencia(@RequestBody String json){
-        JsonParser parser = new JsonParser();
-        JsonElement jsonTree = parser.parse(json);
-        JsonObject jsonObject = jsonTree.getAsJsonObject();
-        String nombre = jsonObject.get("nombre").getAsString();
-        String descripcion = jsonObject.get("descripcion").getAsString();
-        Double latitud = (jsonObject.get("valorlat").getAsDouble());
-        Double longitud = (jsonObject.get("valorlong").getAsDouble());
-        RequestIncidencia incidenciaEntrante=new RequestIncidencia(descripcion,nombre,latitud,longitud,true,0);
 
+    public String crearIncidencia(@RequestBody RequestIncidencia incidenciaEntrante){
+        Localizacion localizacion = new Localizacion(incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),incidenciaEntrante.getPlanta());
+        //TODO: Obtener un espacion dadas unas coordenadas a través de un servicio de dominio
+        Optional<Espacio> espacioResultado = repositorioEspacios.ObtenerEspacioPorLoca(localizacion);
+        boolean exterior = true;
+        String idespacio = "exterior";
+        if(espacioResultado.isPresent()){
+            exterior=false;
+            idespacio=espacioResultado.get().getNombre();
+        }
         IncidenciaFactory incidenciaFactory = new IncidenciaFactory();
-        Incidencia nuevaIncidencia = incidenciaFactory.crearIncidencia(incidenciaEntrante.getNombre(),
-                incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),incidenciaEntrante.getDescripcion(),
-                incidenciaEntrante.isNotificacion(),incidenciaEntrante.getPlanta());
+        Incidencia nuevaIncidencia = incidenciaFactory.crearIncidencia(incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),
+                incidenciaEntrante.getNombre(),incidenciaEntrante.getDescripcion(),incidenciaEntrante.isNotificacion(),idespacio);
+
+           System.out.println("VEAMos que incidencia mete");
+        System.out.println(nuevaIncidencia.getId());
+        System.out.println(nuevaIncidencia.getDescripcion());
+        System.out.println(nuevaIncidencia.getEstado());
+        System.out.println(nuevaIncidencia.getHoraFechaCreada());
+        System.out.println(nuevaIncidencia.esNotificacion());
+        System.out.println(nuevaIncidencia.getCodigoCancelacion());
+        System.out.println(nuevaIncidencia.getLocalizacion().getLatitud());
+        System.out.println(nuevaIncidencia.getIdespacio());
+        System.out.println(nuevaIncidencia.getNombreIncidencia());
+        System.out.println("-----------------------------------------");
+
+
         repositorioIncidencias.anyadirIncidencia(nuevaIncidencia);
+
+
         return new String("Success");
     }
+
+    @RequestMapping(value = "/registro", method = RequestMethod.GET)
+    public  @ResponseBody
+    String obtenerRegistroIncidencias(){
+        ArrayList<Incidencia> resultado = repositorioIncidencias.IncidenciasPorFecha();
+        ArrayList<InfoIncidencia> registroDevuelto = new ArrayList<>();
+        Gson gson = new Gson();
+        if(resultado.isEmpty()){
+            return gson.toJson(registroDevuelto);
+        }else {
+            for(Incidencia i : resultado){
+                registroDevuelto.add(InfoIncidencia.crearInfoDeIncidencia(i));
+
+            }
+             return gson.toJson(registroDevuelto);
+        }
+
+    }
+
+
 }

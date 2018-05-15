@@ -8,7 +8,7 @@ import java.util.Objects;
 @Embeddable
 public class Estado {
 
-    /*Posibles nombre de estados:
+    /*Posibles estados:
             Pendiente
             Cancelada
             Aceptada
@@ -16,9 +16,10 @@ public class Estado {
             Completada
             CanceladaUsr
          */
-    private String nombre;
+    private String nombreEstado;
     private Date horaFechaCompletada;
 
+    public Estado(){}
     public Estado(String nombre){
         assert(nombre.equals("Pendiente") ||
                 nombre.equals("Cancelada") ||
@@ -26,7 +27,7 @@ public class Estado {
                 nombre.equals("Asignada") ||
                 nombre.equals("Completada") ||
                 nombre.equals("CanceladaUsr"));
-        this.nombre=nombre;
+        this.nombreEstado =nombre;
     }
 
     public void finalizar(Date horaFechaCompletada){
@@ -34,7 +35,7 @@ public class Estado {
     }
     @Override
     public String toString() {
-        return nombre;
+        return nombreEstado;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class Estado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Estado estado = (Estado) o;
-        return Objects.equals(nombre, estado.nombre);
+        return Objects.equals(nombreEstado, estado.nombreEstado);
     }
 
 }

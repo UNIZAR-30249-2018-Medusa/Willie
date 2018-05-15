@@ -1,25 +1,30 @@
-
 package willie.dominio;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Repository
 public interface RepositorioIncidencias {
+    @Transactional
+    void anyadirIncidencia(Incidencia incidencia);
 
-    void anyadirIncidencia(Incidencia i);
+    void actualizarIncidencia(Incidencia incidencia);
 
-    void actualizarIncidencia(Incidencia i,Trabajador trabajador);
+    void borrarIncidencia(Incidencia incidencia);
 
-    void borrarIncidencia(Incidencia i);
+    Incidencia buscarIncidenciaNombre(String nombre);
 
-    void cambiarEstadoIncidencia(Incidencia i, Estado estado);
-
-    Incidencia buscarIncidenciaNombre(Incidencia i);
+    Incidencia buscarIncidenciaId(UUID nombre);
 
     ArrayList<Incidencia> buscarIncidenciasTrabajador(Trabajador trabajador);
 
-    Localizacion localizarIncidencia(String i);
+    ArrayList<Incidencia> IncidenciasPorFecha();
+
+    Localizacion localizarIncidencia(String nombre);
+
+
 
 }
