@@ -12,17 +12,19 @@ public class InfoIncidencia {
     private String descripcion;
     private Date fechaCreada;
     private Estado estado;
+    private String idespacio;
 
-    public InfoIncidencia(Localizacion localizacion, String nombre, String descripcion, Date fechaCreada, Estado estado) {
+    public InfoIncidencia(Localizacion localizacion, String nombre, String descripcion, Date fechaCreada, Estado estado,String idespacio) {
         this.localizacion = localizacion;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreada = fechaCreada;
         this.estado = estado;
+        this.idespacio=idespacio;
     }
 
     public static InfoIncidencia crearInfoDeIncidencia(Incidencia incidencia){
         return new InfoIncidencia(incidencia.getLocalizacion(),incidencia.getNombreIncidencia(),
-                incidencia.getDescripcion(),incidencia.getHoraFechaCreada(),incidencia.getEstado());
+                incidencia.getDescripcion(),incidencia.getHoraFechaCreada(),incidencia.getEstado(),incidencia.getIdespacio());
     }
 }

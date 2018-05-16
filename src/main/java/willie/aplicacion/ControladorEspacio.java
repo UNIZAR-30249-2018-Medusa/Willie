@@ -1,7 +1,6 @@
 package willie.aplicacion;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 import willie.dominio.Espacio;
 import willie.dominio.Localizacion;
@@ -14,16 +13,24 @@ public class ControladorEspacio {
     @Autowired
     RepositorioEspacios repositorioEspacios;
 
-    @RequestMapping(value = "/espacio", method = RequestMethod.GET)
-    public InfoEspacio ObtenerInfoEspacio(@RequestParam double lat, @RequestParam double lon, @RequestParam int planta){
+    @RequestMapping(value="/espacio", method = RequestMethod.POST)
+    public @ResponseBody InfoEspacio ObtenerInfoEspacio(@RequestBody CoordenadasMapa coord){
+        System.out.println(coord);
+        Double lat= coord.latitud;
+        Double lon = coord.longitud;
+        int planta=coord.planta;
 
         Optional<Espacio> resultado = repositorioEspacios.ObtenerEspacioPorLoca(new Localizacion(lat,lon,planta));
         if(resultado.isPresent()){
-            return new InfoEspacio(resultado.get().getPlantaEspacio(),resultado.get().getNombre(),
+            InfoEspacio info= new InfoEspacio(resultado.get().getPlantaEspacio(),resultado.get().getNombre(),
                     resultado.get().getEdificio(),false);
+            return  info;
         }else {
-            return new InfoEspacio(0,"Exterior","Exterior",true);
+            InfoEspacio info =new InfoEspacio(planta,"Exterior","Exterior",true);
+            return  info;
         }
+
 
     }
 }
+

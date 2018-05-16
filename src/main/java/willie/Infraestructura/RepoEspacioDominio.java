@@ -52,8 +52,10 @@ public class RepoEspacioDominio implements RepositorioEspacios {
                 break;
         }
         if(resultadoQuery == null){
+            log.info("estoy en null");
             resultado = Optional.empty();
         }else{
+            log.info("estoy en si");
             resultado = Optional.of(resultadoQuery.extraeEspacio());
         }
         return resultado;

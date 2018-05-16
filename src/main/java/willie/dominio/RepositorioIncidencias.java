@@ -1,12 +1,14 @@
 package willie.dominio;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Repository
 public interface RepositorioIncidencias {
-
+    @Transactional
     void anyadirIncidencia(Incidencia incidencia);
 
     void actualizarIncidencia(Incidencia incidencia);
@@ -25,4 +27,8 @@ public interface RepositorioIncidencias {
 
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> interfaz-leaflet
