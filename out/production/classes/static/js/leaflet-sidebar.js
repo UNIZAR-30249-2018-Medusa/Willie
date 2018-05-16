@@ -295,4 +295,4 @@ L.Control.Button = L.Control.extend({
 
 L.control.button = function (label, options) {
     return new L.Control.Button(label, options);
-};
+}

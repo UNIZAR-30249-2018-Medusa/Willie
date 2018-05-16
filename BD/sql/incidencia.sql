@@ -11,6 +11,7 @@ CREATE TABLE public.incidencia
     "es_notificacion" boolean,
     "hora_fecha_creada" date,
     idespacio text COLLATE pg_catalog."default",
+    edificio_de_incidencia text,
     latitud double precision,
     longitud double precision,
     planta integer,

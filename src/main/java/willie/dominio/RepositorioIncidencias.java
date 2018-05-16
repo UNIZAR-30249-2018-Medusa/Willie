@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Repository
 public interface RepositorioIncidencias {
-    @Transactional
+
     void anyadirIncidencia(Incidencia incidencia);
 
     void actualizarIncidencia(Incidencia incidencia);
@@ -24,11 +24,4 @@ public interface RepositorioIncidencias {
     ArrayList<Incidencia> IncidenciasPorFecha();
 
     Localizacion localizarIncidencia(String nombre);
-
-
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> interfaz-leaflet

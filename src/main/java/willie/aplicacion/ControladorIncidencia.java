@@ -15,37 +15,15 @@ public class ControladorIncidencia {
     RepositorioIncidencias repositorioIncidencias;
     @Autowired
     RepositorioEspacios repositorioEspacios;
+    @Autowired
+    IncidenciaFactory incidenciaFactory;
 
     //TODO: Repositorio de incidencias
     @RequestMapping(value="/crearincidencia", method = RequestMethod.POST)
 
     public String crearIncidencia(@RequestBody RequestIncidencia incidenciaEntrante){
-        Localizacion localizacion = new Localizacion(incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),incidenciaEntrante.getPlanta());
-        //TODO: Obtener un espacion dadas unas coordenadas a través de un servicio de dominio
-        Optional<Espacio> espacioResultado = repositorioEspacios.ObtenerEspacioPorLoca(localizacion);
-        boolean exterior = true;
-        String idespacio = "exterior";
-        if(espacioResultado.isPresent()){
-            exterior=false;
-            idespacio=espacioResultado.get().getNombre();
-        }
-        IncidenciaFactory incidenciaFactory = new IncidenciaFactory();
         Incidencia nuevaIncidencia = incidenciaFactory.crearIncidencia(incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),
-                incidenciaEntrante.getNombre(),incidenciaEntrante.getDescripcion(),incidenciaEntrante.isNotificacion(),idespacio);
-
-           System.out.println("VEAMos que incidencia mete");
-        System.out.println(nuevaIncidencia.getId());
-        System.out.println(nuevaIncidencia.getDescripcion());
-        System.out.println(nuevaIncidencia.getEstado());
-        System.out.println(nuevaIncidencia.getHoraFechaCreada());
-        System.out.println(nuevaIncidencia.esNotificacion());
-        System.out.println(nuevaIncidencia.getCodigoCancelacion());
-        System.out.println(nuevaIncidencia.getLocalizacion().getLatitud());
-        System.out.println(nuevaIncidencia.getIdespacio());
-        System.out.println(nuevaIncidencia.getNombreIncidencia());
-        System.out.println("-----------------------------------------");
-
-
+                incidenciaEntrante.getNombre(),incidenciaEntrante.getDescripcion(),incidenciaEntrante.isNotificacion(),incidenciaEntrante.getPlanta());
         repositorioIncidencias.anyadirIncidencia(nuevaIncidencia);
 
 

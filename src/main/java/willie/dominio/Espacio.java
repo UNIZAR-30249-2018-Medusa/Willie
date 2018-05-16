@@ -15,11 +15,12 @@ public class Espacio {
 
 
     public Espacio(){}
-    public Espacio(String edificio, String tipoDeUso, Localizacion localizacion,int planta){
+    public Espacio(String edificio, String tipoDeUso, Localizacion localizacion,int planta,String id){
         this.edificio=edificio;
         this.nombre=tipoDeUso;
         this.localizacion=localizacion;
         this.plantaEspacio=planta;
+        this.id=id;
     }
 
     public String getId() {

@@ -107,7 +107,6 @@ $(document).ready(function(){
                 '<b class="w3-center">Incidencia '+x+'</b><br>'+
                 '<b>Nombre de la incidencia: '+ array[x]["nombre"] +' </b><br>'+
                 '<b>Descripcion: '+ array[x]["descripcion"] +' </b><br>'+
-                '<b>Espacio: '+ array[x]["idespacio"]+' </b><br>'+
                 '<b>Planta: '+ array[x]["localizacion"]["planta"]+' </b><br>'+
                 '<b>Fecha Creada: ' + array[x]["fechaCreada"]+' </b><br>'+
                 '</div><br><hr/><hr/>'
@@ -125,7 +124,7 @@ $(document).ready(function(){
 
 function muestraincidencias() {
     map.removeLayer(marker);
-    var popup1 = L.responsivePopup().setContent('<div id="fichaincidencias">ficha Con todas las incidencias que hay<br>incidencia=' +infoespacio["edificio"] + ' </div>')
+    var popup1 = L.responsivePopup().setContent('<div id="fichaincidencias">Incidencias del espacio '+infoespacio["nombre"]+'<br>\n' +todasnotificaciones + ' </div>')
     marker=L.marker(punto.latlng).addTo(map).bindPopup(popup1,{minWidth: 500});
     marker.openPopup();
 }
@@ -164,7 +163,7 @@ function menucrearincidencias() {
         '<label class="w3-padding-16 w3-xlarge"><b>Nombre</b></label>'+
         '<input type="text" placeholder="Nombre de la incidencia" id="nombre" name="nombre" maxlength="70" class="w3-input"  required> <br>'+
         '<label  class="w3-padding-16 w3-xlarge"><b>Descripcion</b></label>'+
-        '<input type="text" placeholder="Enter Password"  maxlength="150" id="descripcion" name="descripcion" class="w3-input" required><br>'+
+        '<input type="text" placeholder="Descripción breve de la incidencia"  maxlength="150" id="descripcion" name="descripcion" class="w3-input" required><br>'+
         '<div class = "w3-center">'+
         '<button type="reset" class="w3-button w3-blue">Cancelar</button>'+
         '<button onclick="crearincidencia()" class="w3-button w3-blue">Crear</button>'+

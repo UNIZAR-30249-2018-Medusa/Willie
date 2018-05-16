@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import willie.Application;
 import willie.dominio.Incidencia;
+import willie.dominio.IncidenciaFactory;
 import willie.dominio.Localizacion;
 import willie.dominio.RepositorioIncidencias;
 
@@ -24,14 +25,17 @@ public class TestBorradoIncidencia {
 
     @Autowired
     RepositorioIncidencias repositorioIncidencias;
+
+    @Autowired
+    IncidenciaFactory incidenciaFactory;
     Incidencia in;
 
     Logger log = LoggerFactory.getLogger(TestObtenerRegistroIncidencias.class);
 
     @Before
     public void instertarIncidenciaDePrueba(){
-        in = new Incidencia("incidencia de prueba","testBorrado",false,false,new Date(),
-                new Localizacion(4616791.0,675734.3,0),"pasillo");
+        in = incidenciaFactory.crearIncidencia(4616791.0,675734.3,
+                "testBorrado","incidencia de prueba",false,0);
         repositorioIncidencias.anyadirIncidencia(in);
     }
 

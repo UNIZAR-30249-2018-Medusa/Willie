@@ -16,6 +16,7 @@ public class Incidencia extends Entidad {
     private Boolean esNotificacion;
     private Date horaFechaCreada;
     private String idespacio;
+    private String edificioDeIncidencia;
     @Embedded
     private Localizacion localizacion;
     @Embedded
@@ -28,7 +29,7 @@ public class Incidencia extends Entidad {
     public Incidencia(){}
     //Crear nueva incidencia
     public Incidencia(String descripcion, String nombre, Boolean exterior, Boolean esNotificacion,
-                      Date horaFecha, Localizacion localizacion, String idespacio){
+                      Date horaFecha, Localizacion localizacion, String idespacio,String edificioDeIncidencia){
         super();
         this.descripcion=descripcion;
         this.nombreIncidencia = nombre;
@@ -37,9 +38,9 @@ public class Incidencia extends Entidad {
         this.horaFechaCreada =horaFecha;
         this.localizacion=localizacion;
         this.estado=new Estado("Pendiente");
-        Random rand = new Random();                 //Sujeto a cambio.
+        this.edificioDeIncidencia=edificioDeIncidencia;
+        //TODO: Gestionar cancelación de incidencias
         //this.codigoCancelacion = this.id.getLeastSignificantBits();
-
         this.idespacio = idespacio;
     }
     public void aceptar() {
@@ -113,6 +114,14 @@ public class Incidencia extends Entidad {
 
     public Localizacion getLocalizacion() {
         return localizacion;
+    }
+
+    public String getEdificioDeIncidencia() {
+        return edificioDeIncidencia;
+    }
+
+    public String getIdespacio() {
+        return idespacio;
     }
 
     @Override

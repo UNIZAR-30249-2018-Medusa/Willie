@@ -29,17 +29,9 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
-<<<<<<< HEAD
     @Transactional
     public void borrarIncidencia(Incidencia incidencia) {
-
         repoIncidenciasSpring.delete(incidencia);
-=======
-    public void borrarIncidencia(Incidencia incidencia) {
-
-        repoIncidenciasSpring.deleteById(incidencia.getId());
->>>>>>> interfaz-leaflet
-
     }
 
     @Override

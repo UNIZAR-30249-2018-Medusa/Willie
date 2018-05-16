@@ -26,16 +26,17 @@ public class EspacioPostGis {
 
     }
 
-    Espacio extraeEspacio(){
+    public Espacio extraeEspacio(){
+        String edificio="";
         switch (this.id_edifici){
             case "CRE.1200.":
-                this.id_edifici = "Ada Byron";
+                edificio = "Ada Byron";
                 break;
             case "CRE.1201.":
-                this.id_edifici = "Betancourt";
+                edificio = "Betancourt";
                 break;
             case "CRE.1065.":
-                this.id_edifici = "Torres Quevedo";
+                edificio = "Torres Quevedo";
                 break;
         }
         String sSubCadena = id_utc.substring(0,2);
@@ -60,7 +61,7 @@ public class EspacioPostGis {
                 planta=4;
                 break;
         }
-        return new Espacio(id_edifici,id_centro,null,planta);
+        return new Espacio(edificio,id_centro,null,planta,id_utc);
     }
 
 

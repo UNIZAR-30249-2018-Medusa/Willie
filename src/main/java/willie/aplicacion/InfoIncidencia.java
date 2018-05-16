@@ -27,4 +27,6 @@ public class InfoIncidencia {
         return new InfoIncidencia(incidencia.getLocalizacion(),incidencia.getNombreIncidencia(),
                 incidencia.getDescripcion(),incidencia.getHoraFechaCreada(),incidencia.getEstado(),incidencia.getIdespacio());
     }
+
+
 }
