@@ -2,6 +2,7 @@ package willie.aplicacion;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import willie.dominio.*;
 
@@ -18,9 +19,9 @@ public class ControladorIncidencia {
     @Autowired
     IncidenciaFactory incidenciaFactory;
 
-    //TODO: Repositorio de incidencias
-    @RequestMapping(value="/crearincidencia", method = RequestMethod.POST)
 
+    @Transactional
+    @RequestMapping(value="/crearincidencia", method = RequestMethod.POST)
     public String crearIncidencia(@RequestBody RequestIncidencia incidenciaEntrante){
         Incidencia nuevaIncidencia = incidenciaFactory.crearIncidencia(incidenciaEntrante.getLatitud(),incidenciaEntrante.getLongitud(),
                 incidenciaEntrante.getNombre(),incidenciaEntrante.getDescripcion(),incidenciaEntrante.isNotificacion(),incidenciaEntrante.getPlanta());

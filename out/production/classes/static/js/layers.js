@@ -82,35 +82,59 @@ sidebar.addTo(map);
 ////  COMPORTAMIENTO BOTON
 
 
-var punto
-var infoespacio
+var punto;
+var infoespacio;
 var marker=null;
-var puntolat
-var puntolong
-var planta
+var puntolat;
+var puntolong;
+var planta;
 
 $(document).ready(function(){
 
-        console.log("voy al registro")
+        console.log("voy al registro");
         url="/registro";
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", url, false);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send();
-        console.log(xmlhttp.response)
-        var array={}
-        array=JSON.parse(xmlhttp.response)
-        console.log(array)
-        todasnotificaciones=""
+        console.log(xmlhttp.response);
+        var array={};
+        array=JSON.parse(xmlhttp.response);
+        console.log(array);
+        todasnotificaciones="";
         for (x=0;x<array.length;x++){
+            var colorEstado;
+            switch ([x]["estado"]) {
+
+                case "Pendiente":
+                    colorEstado = 'style = color:yellow';
+                    break;
+
+                case "Aceptada":
+                    colorEstado = 'style = color:blue';
+                    break;
+
+                case "Asignada":
+                    colorEstado = 'style = color:blue';
+                    break;
+
+                case "Completada":
+                    colorEstado = 'style = color:green';
+                    break;
+
+                case "Cancelada":
+                    colorEstado = 'style = color:red';
+                    break;
+            }
             contenidoficha='<div id="ficha">'+
                 '<b class="w3-center">Incidencia '+x+'</b><br>'+
                 '<b>Nombre de la incidencia: '+ array[x]["nombre"] +' </b><br>'+
                 '<b>Descripcion: '+ array[x]["descripcion"] +' </b><br>'+
+                '<b '+colorEstado+'>Estado: '+ array[x]["estado"]+' </b><br>'+
                 '<b>Planta: '+ array[x]["localizacion"]["planta"]+' </b><br>'+
                 '<b>Fecha Creada: ' + array[x]["fechaCreada"]+' </b><br>'+
-                '</div><br><hr/><hr/>'
-            console.log("Vamos por " + array[x]["idespacio"])
+                '</div><br><hr/><hr/>';
+            console.log("Vamos por " + array[x]["idespacio"]);
             todasnotificaciones+=contenidoficha
         }
         document.getElementById('nuevasincidencias').innerHTML=todasnotificaciones;
@@ -124,30 +148,30 @@ $(document).ready(function(){
 
 function muestraincidencias() {
     map.removeLayer(marker);
-    var popup1 = L.responsivePopup().setContent('<div id="fichaincidencias">Incidencias del espacio '+infoespacio["nombre"]+'<br>\n' +todasnotificaciones + ' </div>')
+    var popup1 = L.responsivePopup().setContent('<div id="fichaincidencias">Incidencias del espacio '+infoespacio["nombre"]+'<br>\n' +todasnotificaciones + ' </div>');
     marker=L.marker(punto.latlng).addTo(map).bindPopup(popup1,{minWidth: 500});
     marker.openPopup();
 }
 
 
 function crearincidencia() {
-    descripcion =document.getElementById("descripcion").value
+    descripcion =document.getElementById("descripcion").value;
     nombre= document.getElementById("nombre").value;
-    latitud=puntolat
-    longitud=puntolong
-    var data = {}
-    data.descripcion  = descripcion
-    data.latitud  = latitud
-    data.longitud  = longitud
-    data.notificacion=false
-    data.planta =planta
-    data.nombre = nombre
+    latitud=puntolat;
+    longitud=puntolong;
+    var data = {};
+    data.descripcion  = descripcion;
+    data.latitud  = latitud;
+    data.longitud  = longitud;
+    data.notificacion=false;
+    data.planta =planta;
+    data.nombre = nombre;
 
 
 
     var json = JSON.stringify(data);
-    console.log(json)
-    url2="/crearincidencia"
+    console.log(json);
+    url2="/crearincidencia";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url2, false);
     xmlhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
@@ -168,7 +192,7 @@ function menucrearincidencias() {
         '<button type="reset" class="w3-button w3-blue">Cancelar</button>'+
         '<button onclick="crearincidencia()" class="w3-button w3-blue">Crear</button>'+
         '</div>'+
-        '</div>'
+        '</div>';
 
     var popup1 = L.responsivePopup().setContent(formulario);
     marker=L.marker(punto.latlng).addTo(map).bindPopup(popup1,{minWidth: 500});
@@ -215,7 +239,7 @@ function getinfoEspacio(e) {
     xmlhttp.open("POST", url, false);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(json);
-    infoespacio=JSON.parse(xmlhttp.responseText)
+    infoespacio=JSON.parse(xmlhttp.responseText);
     punto=e;
 
     var contenidoficha='<div id="ficha">'+
@@ -226,7 +250,7 @@ function getinfoEspacio(e) {
         '<b>Exterior:' + infoespacio["exterior"]+' </b><br>'+
         '<button  onclick="muestraincidencias()"  role="button" class="w3-button w3-blue">Ver incidencias</button>'+
         '<button  onclick="menucrearincidencias()"  role="button" class="w3-button w3-blue">Crear incidencia</button>'+
-        '</div>'
+        '</div>';
     popup = L.responsivePopup().setContent(contenidoficha);
     marker=L.marker(e.latlng).addTo(map).bindPopup(popup);
     marker.openPopup();

@@ -24,6 +24,7 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
+    @Transactional
     public void actualizarIncidencia(Incidencia incidencia) {
         repoIncidenciasSpring.save(incidencia);
     }

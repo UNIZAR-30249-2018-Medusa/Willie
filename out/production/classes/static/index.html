@@ -49,20 +49,22 @@
                     <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
                     <div class="w3-padding-64" >
-                        <form action="action" method="post">
-                            <div class="w3-padding-32" >
-                                <label class="w3-padding-16 w3-xlarge"><b>Email</b></label>
-                                <input type="text" placeholder="email@email.com" name="email" maxlength="70" class="w3-input"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required> <br>
-                                <label  class="w3-padding-16 w3-xlarge"><b>Password</b></label>
-                                <input type="password" placeholder="Enter Password"  maxlength="30" name="psw" class="w3-input" required><br>
-                                <div class = "w3-center">
-                                    <button type="reset" class="w3-button w3-blue">Cancelar</button>
-                                    <button type="submit" class="w3-button w3-blue">Log in</button>
+                        <form action="action" method="post" id="login">
+                            <div class="w3-padding-32" id="campos" >
+                                    <label class="w3-padding-16 w3-xlarge"><b>Email</b></label>
+                                    <input id="nombreUsr" type="text" placeholder="email@email.com" name="email" maxlength="70" class="w3-input"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required><br>
+                                    <label  class="w3-padding-16 w3-xlarge"><b>Password</b></label>
+                                    <input id="pass" type="password" placeholder="Enter Password"  maxlength="30" name="psw" class="w3-input" required><br>
+                                    <label  class="w3-padding-16 w3-xlarge"><b>Contraseña Administrativa</b></label>
+                                    <input id="Authpass" type="password" placeholder="Enter Password"  maxlength="30" name="psw" class="w3-input" required><br>
+                                    <div class = "w3-center">
+                                        <button type="reset" class="w3-button w3-blue">Cancelar</button>
+                                        <button id="submitForm" type="submit" class="w3-button w3-blue">Log in</button>
+                                        <button id="nuevaCuenta" type="submit" class="w3-button w3-blue">Dar de alta admin.</button>
                                 </div>
-
+                                <div id="resLogin"></div>
                             </div>
                         </form>
-
                     </div>
                 </div>
 
@@ -78,6 +80,8 @@
         <script src="js/proj4-compressed.js"></script>
         <script src="js/proj4leaflet.js"></script>
         <script src="js/layers.js"></script>
+        <script src="js/login.js"></script>
+        <script src="js/jquery.md5.js"></script>
 
     </body>
 </html>
