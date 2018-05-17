@@ -50,14 +50,7 @@ var wmsLayer4= L.tileLayer.wms("http://localhost:8088/geoserver/wms", {
     transparent: true
 });
 //Control de las plantas que se muestran
-/**var pisos = {
-    "Sotanos":wmsLayerSot,
-    "Planta baja":wmsLayer0,
-    "Primer piso":wmsLayer1,
-    "Segundo piso":wmsLayer2,
-    "Tercer piso":wmsLayer3,
-    "Cuarto piso (Ada)":wmsLayer4
-};*/
+
 
 var pisos = {
     "<span id=Sotano>Sotanos</span>":wmsLayerSot,
@@ -88,6 +81,7 @@ var marker=null;
 var puntolat;
 var puntolong;
 var planta;
+var array={}
 
 $(document).ready(function(){
 
@@ -98,13 +92,13 @@ $(document).ready(function(){
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send();
         console.log(xmlhttp.response);
-        var array={};
+
         array=JSON.parse(xmlhttp.response);
         console.log(array);
         todasnotificaciones="";
         for (x=0;x<array.length;x++){
             var colorEstado;
-            var estado = [x]["estado"];
+            var estado = array[x]["estado"];
             if(estado==="Pendiente"){
                 colorEstado = "\"color:yellow\"";
             }else if(estado==="Aceptada"){
@@ -136,10 +130,42 @@ $(document).ready(function(){
 
 
 
-function muestraincidencias() {
+function muestraincidencias(idE) {
     map.removeLayer(marker);
-    var popup1 = L.responsivePopup().setContent('<div id="fichaincidencias">Incidencias del espacio '+infoespacio["nombre"]+'<br>\n' +todasnotificaciones + ' </div>');
-    marker=L.marker(punto.latlng).addTo(map).bindPopup(popup1,{minWidth: 500});
+    todasnotificaciones=""
+    for (x=0;x<array.length;x++){
+        if(array[x]["idespacio"]==idE){
+            var colorEstado;
+            var estado = array[x]["estado"];
+            if(estado==="Pendiente"){
+                colorEstado = "\"color:yellow\"";
+            }else if(estado==="Aceptada"){
+                colorEstado = "\"color:blue\"";
+            }else if(estado==="Completada"){
+                colorEstado = "\"color:green\"";
+            }else if(estado==="Asignada"){
+                colorEstado = "\"color:blue\"";
+            }else if(estado==="Cancelada"){
+                colorEstado = "\"color:red\"";
+            }
+            contenidoficha='<div id="ficha">'+
+                '<b class="w3-center">Incidencia '+x+'</b><br>'+
+                '<b>Nombre de la incidencia: '+ array[x]["nombre"] +' </b><br>'+
+                '<b>Descripcion: '+ array[x]["descripcion"] +' </b><br>'+
+                '<b style='+colorEstado+'>Estado: '+ array[x]["estado"]+' </b><br>'+
+                '<b>Planta: '+ array[x]["localizacion"]["planta"]+' </b><br>'+
+                '<b>Fecha Creada: ' + array[x]["fechaCreada"]+' </b><br>'+
+                '</div><br><hr/><hr/>';
+            console.log("Vamos por " + array[x]["idespacio"]);
+            todasnotificaciones+=contenidoficha
+        }
+
+    }
+    if(todasnotificaciones==""){
+        todasnotificaciones='<div id="ficha"><b class="w3-center">No existen incidencias en este espacio </b><br></div>'
+    }
+    var popup1 = L.responsivePopup().setContent(todasnotificaciones);
+    marker=L.marker(punto.latlng).addTo(map).bindPopup(popup1,{maxHeight: 500});
     marker.openPopup();
 }
 
@@ -166,7 +192,7 @@ function crearincidencia() {
     xmlhttp.open("POST", url2, false);
     xmlhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
     xmlhttp.send(json);
-
+    location.reload(true);
 
 }
 
@@ -231,14 +257,15 @@ function getinfoEspacio(e) {
     xmlhttp.send(json);
     infoespacio=JSON.parse(xmlhttp.responseText);
     punto=e;
-
+    console.log("EL INFO ESPACIO = "+ xmlhttp.responseText)
+    idEspacio=infoespacio["idE"]
     var contenidoficha='<div id="ficha">'+
         '<b class="w3-center">Ficha</b><br>'+
         '<b>Edificio: '+infoespacio["edificio"] +' </b><br>'+
         '<b>Espacio: '+ infoespacio["nombre"]+' </b><br>'+
         '<b>Planta: '+ infoespacio["planta"]+' </b><br>'+
         '<b>Exterior:' + infoespacio["exterior"]+' </b><br>'+
-        '<button  onclick="muestraincidencias()"  role="button" class="w3-button w3-blue">Ver incidencias</button>'+
+        '<button  onclick="muestraincidencias(idEspacio)"  role="button" class="w3-button w3-blue">Ver incidencias</button>'+
         '<button  onclick="menucrearincidencias()"  role="button" class="w3-button w3-blue">Crear incidencia</button>'+
         '</div>';
     popup = L.responsivePopup().setContent(contenidoficha);

@@ -1,10 +1,8 @@
 package willie.dominio;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Repository
 public interface RepositorioIncidencias {

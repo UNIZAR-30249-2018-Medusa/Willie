@@ -23,10 +23,10 @@ public class ControladorEspacio {
         Optional<Espacio> resultado = repositorioEspacios.ObtenerEspacioPorLoca(new Localizacion(lat,lon,planta));
         if(resultado.isPresent()){
             InfoEspacio info= new InfoEspacio(resultado.get().getPlantaEspacio(),resultado.get().getNombre(),
-                    resultado.get().getEdificio(),false);
+                    resultado.get().getEdificio(),false,resultado.get().getId());
             return  info;
         }else {
-            InfoEspacio info =new InfoEspacio(planta,"Exterior","Exterior",true);
+            InfoEspacio info =new InfoEspacio(planta,"Exterior","Exterior",true,"Exterior");
             return  info;
         }
 

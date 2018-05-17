@@ -31,7 +31,6 @@ public class TestCrearAdministrador {
 
     CuentaAdministrador nueva;
     String auth = "21232f297a57a5a743894a0e4a801fc3";
-    boolean setup=false;
     HttpSession session;
     HttpServletResponse response;
 
@@ -39,15 +38,11 @@ public class TestCrearAdministrador {
     public void setUp(){
          response = new MockHttpServletResponse();
          session = new MockHttpSession();
-        if(!setup) {
-            nueva = new CuentaAdministrador("test", "testCorrecto");
-            setup = true;
-        }
     }
 
     @After
     public void tearDown(){
-        repositorioAdministrador.delete(nueva);
+        repositorioAdministrador.deleteByUsuario("test1");
     }
 
     @Test
