@@ -52,9 +52,9 @@ public class TestCrearAdministrador {
 
     @Test
     public void loginCorrectoTrasInsercion(){
-        controladorAdministrador.registroAdministrador(new FormularioAdministrador("test","testCorrecto",auth)
+        controladorAdministrador.registroAdministrador(new FormularioAdministrador("test1","testCorrecto",auth)
                 ,response,session);
-        String resultado = controladorAdministrador.accesoAdministrador("test","testCorrecto",
+        String resultado = controladorAdministrador.accesoAdministrador("test1","testCorrecto",
                 auth,response,session);
         Assert.assertEquals("exito",resultado);
 
