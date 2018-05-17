@@ -8,5 +8,4 @@ public interface RepositorioEspacios {
 
     Optional<Espacio> ObtenerEspacioPorLoca(Localizacion localizacion);
 
-
 }

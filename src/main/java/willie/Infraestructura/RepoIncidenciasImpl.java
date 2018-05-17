@@ -9,7 +9,6 @@ import willie.dominio.RepositorioIncidencias;
 import willie.dominio.Trabajador;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Repository
 public class RepoIncidenciasImpl implements RepositorioIncidencias {
@@ -25,15 +24,15 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
+    @Transactional
     public void actualizarIncidencia(Incidencia incidencia) {
         repoIncidenciasSpring.save(incidencia);
     }
 
     @Override
+    @Transactional
     public void borrarIncidencia(Incidencia incidencia) {
-
-        repoIncidenciasSpring.deleteById(incidencia.getId());
-
+        repoIncidenciasSpring.delete(incidencia);
     }
 
     @Override
@@ -42,8 +41,8 @@ public class RepoIncidenciasImpl implements RepositorioIncidencias {
     }
 
     @Override
-    public Incidencia buscarIncidenciaId(UUID nombre) {
-        return repoIncidenciasSpring.findById(nombre);
+    public Incidencia buscarIncidenciaId(String nombre) {
+        return repoIncidenciasSpring.findById(nombre).get();
     }
 
     @Override

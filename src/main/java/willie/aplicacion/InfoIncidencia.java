@@ -11,7 +11,7 @@ public class InfoIncidencia {
     private String nombre;
     private String descripcion;
     private Date fechaCreada;
-    private Estado estado;
+    private String estado;
     private String idespacio;
 
     public InfoIncidencia(Localizacion localizacion, String nombre, String descripcion, Date fechaCreada, Estado estado,String idespacio) {
@@ -19,7 +19,10 @@ public class InfoIncidencia {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreada = fechaCreada;
-        this.estado = estado;
+        this.estado = estado.toString();
+        if(estado.equals("CanceladaUsr")){
+            this.estado="Cancelada";
+        }
         this.idespacio=idespacio;
     }
 
@@ -27,4 +30,6 @@ public class InfoIncidencia {
         return new InfoIncidencia(incidencia.getLocalizacion(),incidencia.getNombreIncidencia(),
                 incidencia.getDescripcion(),incidencia.getHoraFechaCreada(),incidencia.getEstado(),incidencia.getIdespacio());
     }
+
+
 }
